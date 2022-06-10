@@ -1,3 +1,4 @@
+[![Build Status](https://app.travis-ci.com/sarafarag/Spring22CodeReviewActivity.svg?token=pcgRqfKGuCm9Gai24pHo&branch=main)](https://app.travis-ci.com/sarafarag/Spring22CodeReviewActivity)
 
 @BCComputerScience
 
