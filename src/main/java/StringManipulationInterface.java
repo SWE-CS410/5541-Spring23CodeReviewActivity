@@ -95,7 +95,7 @@ public interface StringManipulationInterface {
      * indices length is the same as the string length.
      *
      * throws IllegalArgumentException if not s.length == indices.length == n
-     * throws IndexOutOfBoundsException if   indices[i]< 0  or  indices[i]> string length
+     * throws IndexOutOfBoundsException if   indices[i]< 0  or  indices[i]>= string length
      *
      * @param indices is an integer array for shuffled string new indices positions
      * the character at the ith position moves to indices[i] in the shuffled string.
