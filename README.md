@@ -5,8 +5,8 @@
 # Spr23-5540-CodeReviewActivity
 
 ## Task 1: Open a Pull request 
-1. **Clone** this repository that contains the unit test assignmentSkeleton from here. You should have access now, because you can see this ReadMe file.
-2. Create a branch to the local repository named "First_lastName_CodeReview"
+1. **Clone/Fork** this repository that contains the unit test assignmentSkeleton from here. You should have access now, because you can see this ReadMe file.
+2. If cloned Create a branch to the local repository named "First_lastName_CodeReview"
 3. Update the skeleton project with your final project implementation from Assignment two
 4. Don't change the pom.xml or the .travis.yml file
 5. Commit your changes to the **local repository** 
