@@ -2,7 +2,7 @@
 
 @BCComputerScience
 
-# Spr23CodeReviewActivity
+# Spr23-5540-CodeReviewActivity
 
 ## Task 1: Open a Pull request 
 1. **Clone** this repository that contains the unit test assignmentSkeleton from here. You should have access now, because you can see this ReadMe file.
