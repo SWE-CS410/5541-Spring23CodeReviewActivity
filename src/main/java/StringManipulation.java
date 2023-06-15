@@ -1,3 +1,4 @@
+
 public class StringManipulation implements StringManipulationInterface {
 	
 	private String string;
