@@ -2,8 +2,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class StringManipulationTest {
 
@@ -28,17 +28,23 @@ public class StringManipulationTest {
 
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString(null);
+        int length = manipulatedstring.count();
+    	assertEquals(0, length);
     }
 
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("");
+        int length = manipulatedstring.count();
+    	assertEquals(0, length);
     }
 
     @Test
     public void testCount4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("ThisIsJustOneLongStringWithoutBlanksAsDelimiterSoItShouldBeCountedAsOne");
+        int length = manipulatedstring.count();
+        assertEquals(1, length);
     }
 
     @Test
