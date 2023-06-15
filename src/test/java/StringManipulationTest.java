@@ -145,18 +145,20 @@ public class StringManipulationTest {
       }
       
       @Test
-      public void testGetSubStrings5() {
+      public void testGeSubStrings5() {
           manipulatedstring.setString("This is my string");
-          assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.getSubStrings(1, 101));
+          assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.getSubStrings(1, 100));
       }
       
       @Test
-      public void testGetSubStrings6() {
+      public void testGeSubStrings6() {
           manipulatedstring.setString("This is my string");
-          String[] subStrings = manipulatedstring.getSubStrings(1, 1);
-          assertEquals(subStrings.length, 1);
-          assertEquals(subStrings[0], "his");
+          String [] sStings = manipulatedstring.getSubStrings(1, 1);
+  
+          assertEquals(sStings.length, 1);
+          assertEquals(sStings[0], "This");
       }
+  
       
       
 // END
