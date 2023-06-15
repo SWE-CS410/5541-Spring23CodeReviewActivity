@@ -113,7 +113,7 @@ public class StringManipulationTest {
     }
 
     @Test
-    public void testGeSubStrings1() {
+    public void testGetSubStrings1() {
         manipulatedstring.setString("This is my string");
         String [] sStings = manipulatedstring.getSubStrings(3, 4);
 
@@ -151,7 +151,7 @@ public class StringManipulationTest {
       }
       
       @Test
-      public void testGeSubStrings6() {
+      public void testGetSubStrings6() {
           manipulatedstring.setString("This is my string");
           String [] sStings = manipulatedstring.getSubStrings(1, 1);
   
@@ -164,18 +164,22 @@ public class StringManipulationTest {
 // END
 
     @Test
-    public void testRestoreString1() {
-        manipulatedstring.setString("AaBbCc");
-        int[] array = {0, 1, 2, 3, 4, 5};
+    public void testRestoreString1()
+    {
+        manipulatedstring.setString("art");
+        int [] array;
+        array=new int[]{1,0,2};
         String restoreString = manipulatedstring.restoreString(array);
-        assertEquals(restoreString, "AaBbCc");
+        assertEquals(restoreString, "rat");
     }
 
-
+    // Tests that case is maintained
     @Test
-    public void testRestoreString2() {
+    public void testRestoreString2()
+    {
         manipulatedstring.setString("AaBbCc");
-        int[] array = {1, 0, 3, 2, 5, 4};
+        int [] array;
+        array=new int[]{1,0,3,2,5,4};
         String restoreString = manipulatedstring.restoreString(array);
         assertEquals(restoreString, "aAbBcC");
     }
