@@ -147,9 +147,8 @@ public class StringManipulationTest {
       @Test
       public void testGetSubStrings5() {
           manipulatedstring.setString("This is my string");
-          assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.getSubStrings(1, 100));
+          assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.getSubStrings(1, 101));
       }
-      
       
       @Test
       public void testGetSubStrings6() {
