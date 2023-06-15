@@ -86,7 +86,7 @@ public class StringManipulationTest {
         manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
         assertThrows(IllegalArgumentException.class, () -> manipulatedstring.removeNthCharacter(0, true));
     }
-    
+        
     @Test
     public void testRemoveNthCharacter4() {
         manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
@@ -105,6 +105,7 @@ public class StringManipulationTest {
         assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.removeNthCharacter(100, false));
     }
     
+    // This test checks removing a negative Nth character
     @Test
     public void testRemoveNthCharacter7() {
         manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
@@ -146,41 +147,38 @@ public class StringManipulationTest {
       @Test
       public void testGetSubStrings5() {
           manipulatedstring.setString("This is my string");
-          // This test tries to get substrings with an ending value larger than the string itself
           assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.getSubStrings(1, 100));
       }
+      
       
       @Test
       public void testGetSubStrings6() {
           manipulatedstring.setString("This is my string");
-          // This test checks getting substrings when the starting and ending value are the same
           String[] subStrings = manipulatedstring.getSubStrings(1, 1);
-      
-          assertEquals(1, subStrings.length);
-          assertEquals("his", subStrings[0]);
+          assertEquals(subStrings.length, 1);
+          assertEquals(subStrings[0], "his");
       }
+      
       
 // END
 
     @Test
-    public void testRestoreString1()
-    {
-        manipulatedstring.setString("art");
-        int [] array;
-        array=new int[]{1,0,2};
+    public void testRestoreString1() {
+        manipulatedstring.setString("AaBbCc");
+        int[] array = {0, 1, 2, 3, 4, 5};
         String restoreString = manipulatedstring.restoreString(array);
-        assertEquals(restoreString, "rat");
+        assertEquals(restoreString, "AaBbCc");
     }
 
-     // Tests that case is maintained
-     @Test
-     public void testRestoreString2() {
-         manipulatedstring.setString("AaBbCc");
-         int[] indices = {1, 0, 3, 2, 5, 4};
-         // Tests restoring the string based on the given indices array
-         String restoreString = manipulatedstring.restoreString(indices);
-         assertEquals("aAbBcC", restoreString);
-     }
+
+    @Test
+    public void testRestoreString2() {
+        manipulatedstring.setString("AaBbCc");
+        int[] array = {1, 0, 3, 2, 5, 4};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "aAbBcC");
+    }
+    
      
      @Test
      public void testRestoreString3() {
