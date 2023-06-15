@@ -105,7 +105,7 @@ public class StringManipulationTest {
         assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.removeNthCharacter(100, false));
     }
     
-    // This test checks removing a negative Nth character
+    // Checks removing a negative Nth character
     @Test
     public void testRemoveNthCharacter7() {
         manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
@@ -122,7 +122,7 @@ public class StringManipulationTest {
     }
 
     // START
-      // This test tries to get substrings with a starting value less than 0
+      // Test getting substrings with a starting value less than 0
       @Test
       public void testGetSubStrings2() {
           manipulatedstring.setString("This is my string");
@@ -145,7 +145,7 @@ public class StringManipulationTest {
       }
       
       @Test
-      public void testGeSubStrings5() {
+      public void testGetSubStrings5() {
           manipulatedstring.setString("This is my string");
           assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.getSubStrings(1, 100));
       }
