@@ -1,7 +1,3 @@
-import org.junit.jupiter.api.*;
-import static org.junit.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.*;
-
 public class StringManipulationTest {
 
     private StringManipulationInterface manipulatedstring;

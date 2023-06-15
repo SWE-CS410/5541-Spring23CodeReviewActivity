@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class StringManipulation implements StringManipulationInterface {
 	
 	private String string;
