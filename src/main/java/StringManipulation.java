@@ -94,7 +94,7 @@ public class StringManipulation implements StringManipulationInterface {
      * @param indices The indices of the characters to be restored.
      * @return The restored string.
      */
-    @Override
+     @Override
     public String restoreString(int[] indices){
         if (indices.length != string.length()) {
             throw new IllegalArgumentException();
@@ -112,25 +112,5 @@ public class StringManipulation implements StringManipulationInterface {
 
         return String.join("", restoredStringArray);
     }
-}
 
-    // Private helper methods for input validation
-
-    private void validateCharacterIndex(int index) {
-        if (index <= 0 || index > string.length()) {
-            throw new IndexOutOfBoundsException("Invalid character index");
-        }
-    }
-
-    private void validateWordIndices(int startWord, int endWord) {
-        if (startWord <= 0 || endWord <= 0 || startWord > endWord) {
-            throw new IllegalArgumentException("Invalid word indices");
-        }
-    }
-
-    private void validateIndicesLength(int[] indices) {
-        if (indices.length != string.length()) {
-            throw new IllegalArgumentException("Invalid indices length");
-        }
-    }
 }
