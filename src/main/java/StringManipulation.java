@@ -1,5 +1,4 @@
 public class StringManipulation implements StringManipulationInterface {
-
     @Override
     public String getString() {
         return null;
@@ -7,6 +6,7 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public void setString(String string) {
+
     }
 
     @Override
@@ -20,12 +20,12 @@ public class StringManipulation implements StringManipulationInterface {
     }
 
     @Override
-    public String[] getSubStrings(int startWord, int endWord) {
+    public String[] getSubStrings(int startWord, int endWord){
         return null;
     }
 
     @Override
-    public String restoreString(int[] indices) {
+    public String restoreString(int[] indices){
         return null;
     }
 
