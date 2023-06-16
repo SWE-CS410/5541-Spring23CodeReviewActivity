@@ -2,10 +2,6 @@
 //CS 410 - JUNIT Assignment
 //06112023
 
-package test.java;
-
-import main.java.StringManipulation;
-import main.java.StringManipulationInterface;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

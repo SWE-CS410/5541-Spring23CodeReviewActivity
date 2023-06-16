@@ -2,8 +2,6 @@
 //CS 410 - JUNIT Assignment
 //06112023
 
-package main.java;
-
 public class StringManipulation implements StringManipulationInterface {
 
     private String string; //stores the string to manipulate
