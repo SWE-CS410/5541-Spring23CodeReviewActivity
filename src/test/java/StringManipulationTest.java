@@ -26,20 +26,36 @@ public class StringManipulationTest {
         assertEquals(4, length);
     }
 
+    // Checks what happens if an empty string is passed in
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("          ");
+        int length = manipulatedstring.count();
+        assertEquals(0, length);
     }
 
+    // This test checks that numbers are recognized as strings
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("132 444");
+        int length = manipulatedstring.count();
+        assertEquals(2, length);
     }
 
+    // This test ensures that the counter works on a long string
     @Test
     public void testCount4() {
-        fail("Not yet implemented");
+        String phrase = "the quick brown fox jumps over the lazy dog";
+        int expectedCount = 9;
+    
+        StringManipulation stringManipulation = new StringManipulation();
+        stringManipulation.setString(phrase);
+    
+        int actualCount = stringManipulation.count();
+    
+        assertEquals(expectedCount, actualCount);
     }
+
 
     @Test
     public void testRemoveNthCharacter1() {
@@ -52,34 +68,40 @@ public class StringManipulationTest {
         manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
         assertEquals("I'  b tt r  ut s0 e  16 ts in th s  tr n6  r gh ?", manipulatedstring.removeNthCharacter(3, true));
     }
-
+    
     @Test
     public void testRemoveNthCharacter3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        assertThrows(IllegalArgumentException.class, () -> manipulatedstring.removeNthCharacter(0, true));
     }
-
+        
     @Test
     public void testRemoveNthCharacter4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        assertEquals("                                                 ", manipulatedstring.removeNthCharacter(1, true));
     }
-
+    
     @Test
     public void testRemoveNthCharacter5() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        assertEquals("", manipulatedstring.removeNthCharacter(1, false));
     }
-
+    
     @Test
     public void testRemoveNthCharacter6() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.removeNthCharacter(100, false));
     }
-
+    
+    // Checks removing a negative Nth character
     @Test
     public void testRemoveNthCharacter7() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        assertThrows(IllegalArgumentException.class, () -> manipulatedstring.removeNthCharacter(-1, false));
     }
 
     @Test
-    public void testGeSubStrings1() {
+    public void testGetSubStrings1() {
         manipulatedstring.setString("This is my string");
         String [] sStings = manipulatedstring.getSubStrings(3, 4);
 
@@ -87,26 +109,47 @@ public class StringManipulationTest {
         assertEquals(sStings[1], "string");
     }
 
-    @Test
-    public void testGeSubStrings2() {
-        fail("Not yet implemented");
-    }
-    @Test
-    public void testGeSubStrings3() {
-        fail("Not yet implemented");
-    }
-    @Test
-    public void testGeSubStrings4() {
-        fail("Not yet implemented");
-    }
-    @Test
-    public void testGeSubStrings5() {
-        fail("Not yet implemented");
-    }
-    @Test
-    public void testGeSubStrings6() {
-        fail("Not yet implemented");
-    }
+    // START
+      // Test getting substrings with a starting value less than 0
+      @Test
+      public void testGetSubStrings2() {
+          manipulatedstring.setString("This is my string");
+          // This test tries to get substrings with a negative starting value
+          assertThrows(IllegalArgumentException.class, () -> manipulatedstring.getSubStrings(-1, 4));
+      }
+      
+      @Test
+      public void testGetSubStrings3() {
+          manipulatedstring.setString("This is my string");
+          // This test tries to get substrings with the starting value greater than the ending one
+          assertThrows(IllegalArgumentException.class, () -> manipulatedstring.getSubStrings(2, 1));
+      }
+      
+      @Test
+      public void testGetSubStrings4() {
+          manipulatedstring.setString("This is my string");
+          // This test tries to get substrings with both the starting and ending value negative
+          assertThrows(IllegalArgumentException.class, () -> manipulatedstring.getSubStrings(-2, -1));
+      }
+      
+      @Test
+      public void testGetSubStrings5() {
+          manipulatedstring.setString("This is my string");
+          assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.getSubStrings(1, 100));
+      }
+      
+      @Test
+      public void testGetSubStrings6() {
+          manipulatedstring.setString("This is my string");
+          String [] sStings = manipulatedstring.getSubStrings(1, 1);
+  
+          assertEquals(sStings.length, 1);
+          assertEquals(sStings[0], "This");
+      }
+  
+      
+      
+// END
 
     @Test
     public void testRestoreString1()
@@ -118,32 +161,48 @@ public class StringManipulationTest {
         assertEquals(restoreString, "rat");
     }
 
+    // Tests that case is maintained
     @Test
     public void testRestoreString2()
     {
-        fail("Not yet implemented");
-
+        manipulatedstring.setString("AaBbCc");
+        int [] array;
+        array=new int[]{1,0,3,2,5,4};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "aAbBcC");
     }
-
-    @Test
-    public void testRestoreString3()
-    {
-        fail("Not yet implemented");
-
-    }
-
-    @Test
-    public void testRestoreString4()
-    {
-        fail("Not yet implemented");
-
-    }
-
-    @Test
-    public void testRestoreString5()
-    {
-        fail("Not yet implemented");
-
-    }
-
+    
+     
+     @Test
+     public void testRestoreString3() {
+         manipulatedstring.setString("AaBbCc");
+         int[] indices = {1};
+         // Tests when the indices array size is smaller than the string length
+         assertThrows(IllegalArgumentException.class, () -> manipulatedstring.restoreString(indices));
+     }
+     
+     @Test
+     public void testRestoreString4() {
+         manipulatedstring.setString("AaBbCc");
+         int[] indices = {1, 2, 3, 4, 5, 6, 7};
+         // Tests when the indices array size is larger than the string length
+         assertThrows(IllegalArgumentException.class, () -> manipulatedstring.restoreString(indices));
+     }
+     
+     @Test
+     public void testRestoreString5() {
+         manipulatedstring.setString("AaBbCc");
+         int[] indices = {1, 2, 3, 4, 5, -1};
+         // Tests when an index in the indices array is less than zero
+         assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.restoreString(indices));
+     }
+     
+     @Test
+     public void testRestoreString6() {
+         manipulatedstring.setString("AaBbCc");
+         int[] indices = {1, 2, 3, 4, 5, 7};
+         // Tests when an index in the indices array is larger than the string length
+         assertThrows(IndexOutOfBoundsException.class, () -> manipulatedstring.restoreString(indices));
+     }
+     
 }
