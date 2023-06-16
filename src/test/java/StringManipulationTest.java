@@ -2,148 +2,177 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StringManipulationTest {
 
-    private StringManipulationInterface manipulatedstring;
+    private StringManipulationInterface manipulatedString;
 
     @BeforeEach
     public void setUp() {
-        manipulatedstring = new StringManipulation();
+        manipulatedString = new StringManipulation();
     }
 
     @AfterEach
     public void tearDown() {
-        manipulatedstring = null;
+        manipulatedString = null;
     }
 
     @Test
     public void testCount1() {
-        manipulatedstring.setString("This is my string");
-        int length = manipulatedstring.count();
-        assertEquals(4, length);
+    	int length = manipulatedString.count();
+    	assertEquals(-1, length);
     }
 
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+    	manipulatedString.setString("");
+    	int length = manipulatedString.count();
+    	assertEquals(0, length);
     }
 
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+        manipulatedString.setString("Thisismystring");
+        int length = manipulatedString.count();
+        assertEquals(1, length);
     }
 
     @Test
     public void testCount4() {
-        fail("Not yet implemented");
+        manipulatedString.setString("This is my string");
+        int length = manipulatedString.count();
+        assertEquals(4, length);
     }
-
+    
     @Test
     public void testRemoveNthCharacter1() {
-        manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
-        assertEquals("I' bttr uts0e 16tsinths trn6 rgh?", manipulatedstring.removeNthCharacter(3, false));
+        Exception e = assertThrows(NullPointerException.class, () -> { manipulatedString.removeNthCharacter(3, false); });
+        assertEquals(e.getMessage(), "String has not been set for current StringManipulation object (hint: use setString()).");
     }
-
+    
     @Test
     public void testRemoveNthCharacter2() {
-        manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
-        assertEquals("I'  b tt r  ut s0 e  16 ts in th s  tr n6  r gh ?", manipulatedstring.removeNthCharacter(3, true));
+        manipulatedString.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        Exception e = assertThrows(IllegalArgumentException.class, () -> { manipulatedString.removeNthCharacter(0, false); });
+        assertEquals(e.getMessage(), "First argument is less than or equal to zero.");
     }
 
     @Test
     public void testRemoveNthCharacter3() {
-        fail("Not yet implemented");
+        manipulatedString.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        int n = 50;
+        Exception e = assertThrows(IndexOutOfBoundsException.class, () -> { manipulatedString.removeNthCharacter(n, false); });
+        assertEquals(e.getMessage(), "Passed " + n + " as first argument. " + n + " is greater than length of current StringManipulation object: " + manipulatedString.getString().length());
     }
 
     @Test
     public void testRemoveNthCharacter4() {
-        fail("Not yet implemented");
+        manipulatedString.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        assertEquals("", manipulatedString.removeNthCharacter(1, false));
     }
 
     @Test
     public void testRemoveNthCharacter5() {
-        fail("Not yet implemented");
+        manipulatedString.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        assertEquals("                                                 ", manipulatedString.removeNthCharacter(1, true));
     }
 
     @Test
     public void testRemoveNthCharacter6() {
-        fail("Not yet implemented");
+    	manipulatedString.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        assertEquals("I' bttr uts0e 16tsinths trn6 rgh?", manipulatedString.removeNthCharacter(3, false));
     }
 
     @Test
     public void testRemoveNthCharacter7() {
-        fail("Not yet implemented");
+        manipulatedString.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        assertEquals("I'  b tt r  ut s0 e  16 ts in th s  tr n6  r gh ?", manipulatedString.removeNthCharacter(3, true));
     }
 
     @Test
-    public void testGeSubStrings1() {
-        manipulatedstring.setString("This is my string");
-        String [] sStings = manipulatedstring.getSubStrings(3, 4);
-
-        assertEquals(sStings[0], "my");
-        assertEquals(sStings[1], "string");
+    public void testGetSubStrings1() {
+        Exception e = assertThrows(NullPointerException.class, () -> { manipulatedString.getSubStrings(3, 4); });
+        assertEquals(e.getMessage(), "String has not been set for current StringManipulation object (hint: use setString()).");
     }
 
     @Test
-    public void testGeSubStrings2() {
-        fail("Not yet implemented");
+    public void testGetSubStrings2() {
+        manipulatedString.setString("This is my string");
+        Exception e = assertThrows(IllegalArgumentException.class, () -> { manipulatedString.getSubStrings(0, 4); });
+        assertEquals(e.getMessage(), "Index for startWord (first argument) must be greater than or equal to 1.");
     }
+    
     @Test
-    public void testGeSubStrings3() {
-        fail("Not yet implemented");
+    public void testGetSubStrings3() {
+        manipulatedString.setString("This is my string");
+        Exception e = assertThrows(IllegalArgumentException.class, () -> { manipulatedString.getSubStrings(3, 0); });
+        assertEquals(e.getMessage(), "Index for endWord (second argument) must be greater than or equal to 1.");
     }
+    
     @Test
-    public void testGeSubStrings4() {
-        fail("Not yet implemented");
+    public void testGetSubStrings4() {
+        manipulatedString.setString("This is my string");
+        Exception e = assertThrows(IllegalArgumentException.class, () -> { manipulatedString.getSubStrings(4, 3); });
+        assertEquals(e.getMessage(), "Index for startWord (first argument) must be less than index for endWord (second argument).");
     }
+    
     @Test
-    public void testGeSubStrings5() {
-        fail("Not yet implemented");
+    public void testGetSubStrings5() {
+        manipulatedString.setString("This is my string");
+        Exception e = assertThrows(IndexOutOfBoundsException.class, () -> { manipulatedString.getSubStrings(3, 5); });
+        assertEquals(e.getMessage(), "Index of endWord is greater than word count for current StringManipulation object.");
     }
+    
     @Test
-    public void testGeSubStrings6() {
-        fail("Not yet implemented");
-    }
+    public void testGetSubStrings6() {
+        manipulatedString.setString("This is my string");
+        String[] substrings = manipulatedString.getSubStrings(3, 4);
 
-    @Test
-    public void testRestoreString1()
-    {
-        manipulatedstring.setString("art");
-        int [] array;
-        array=new int[]{1,0,2};
-        String restoreString = manipulatedstring.restoreString(array);
-        assertEquals(restoreString, "rat");
-    }
-
-    @Test
-    public void testRestoreString2()
-    {
-        fail("Not yet implemented");
-
-    }
-
-    @Test
-    public void testRestoreString3()
-    {
-        fail("Not yet implemented");
-
+        assertEquals(substrings[0], "my");
+        assertEquals(substrings[1], "string");
     }
 
     @Test
-    public void testRestoreString4()
-    {
-        fail("Not yet implemented");
-
+    public void testRestoreString1() {
+        int[] array = { 1, 0, 2 };
+        Exception e = assertThrows(NullPointerException.class, () -> { manipulatedString.restoreString(array); });
+        assertEquals(e.getMessage(), "String has not been set for current StringManipulation object (hint: use setString()).");
     }
 
     @Test
-    public void testRestoreString5()
-    {
-        fail("Not yet implemented");
-
+    public void testRestoreString2() {
+    	manipulatedString.setString("art");
+        int[] array = { 1, 0, 2, 3 };
+        Exception e = assertThrows(IllegalArgumentException.class, () -> { manipulatedString.restoreString(array); });
+        assertEquals(e.getMessage(), "Length mismatch between number of words in current StringManipulation object and length of given indices array.");
     }
 
+    @Test
+    public void testRestoreString3() {
+    	manipulatedString.setString("art");
+        int[] array = { 1, 0, 2 };
+        int targetIdx = 0;
+        array[targetIdx] = -1;
+        Exception e = assertThrows(IndexOutOfBoundsException.class, () -> { manipulatedString.restoreString(array); });
+        assertEquals(e.getMessage(), "Invalid index: Element at index " + targetIdx + " in passed array is less than zero.");
+    }
+
+    @Test
+    public void testRestoreString4() {
+    	manipulatedString.setString("art");
+        int[] array = { 1, 0, 2 };
+        int targetIdx = 0;
+        array[targetIdx] = 3;
+        Exception e = assertThrows(IndexOutOfBoundsException.class, () -> { manipulatedString.restoreString(array); });
+        assertEquals(e.getMessage(), "Invalid index: Element at index " + targetIdx + " in passed array is GTE the length of the current StringManipulation object.");
+    }
+
+    @Test
+    public void testRestoreString5() {
+        manipulatedString.setString("art");
+        int[] array = { 1, 0, 2 };
+        String restoredString = manipulatedString.restoreString(array);
+        assertEquals(restoredString, "rat");
+    }
 }
