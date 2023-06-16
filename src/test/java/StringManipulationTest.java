@@ -143,13 +143,7 @@ public class StringManipulationTest {
         manipulatedstring.setString(null);
         assertEquals(null, manipulatedstring.removeNthCharacter(3, true));
     }
-    /**
-     *
-     * */
-    @Test
-    public void testRemoveNthCharacter7() {
-        fail("Not yet implemented");
-    }
+
     /**
      *
      * */
@@ -210,20 +204,8 @@ public class StringManipulationTest {
 
         assertTrue(actualMessage.contains(expectedMessage));
     }
-    /**
-     *
-     * */
-    @Test
-    public void testGeSubStrings5() {
-        fail("Not yet implemented");
-    }
-    /**
-     *
-     * */
-    @Test
-    public void testGeSubStrings6() {
-        fail("Not yet implemented");
-    }
+
+
     /**
      *  this is to test if the restoration works on a normal
      *  circumstance
@@ -289,14 +271,6 @@ public class StringManipulationTest {
         String restoreString = manipulatedstring.restoreString(array);
 
     }
-    /**
-     *
-     * */
-    @Test
-    public void testRestoreString5()
-    {
-        fail("Not yet implemented");
 
-    }
 
 }
