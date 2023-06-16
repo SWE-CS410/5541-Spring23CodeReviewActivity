@@ -45,27 +45,15 @@ public class StringManipulationTest {
     // This test ensures that the counter works on a long string
     @Test
     public void testCount4() {
-        StringBuilder stringBuilder = new StringBuilder();
         String phrase = "the quick brown fox jumps over the lazy dog";
-        int occurrences = 0;
+        int expectedCount = 9;
     
-        for (int i = 0; i < 100; i++) {
-            stringBuilder.append(phrase);
-            stringBuilder.append("\n");
-        }
+        StringManipulation stringManipulation = new StringManipulation();
+        stringManipulation.setString(phrase);
     
-        String longString = stringBuilder.toString();
-        int index = 0;
-        while (index < longString.length()) {
-            index = longString.indexOf(phrase, index);
-            if (index == -1) {
-                break;
-            }
-            occurrences++;
-            index += phrase.length();
-        }
+        int actualCount = stringManipulation.count();
     
-        assertEquals(100, occurrences);
+        assertEquals(expectedCount, actualCount);
     }
 
 
