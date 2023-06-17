@@ -157,45 +157,45 @@ public class StringManipulationTest {
             manipulatedString.restoreString(array); //should throw exception
         });
     }
-    
+
     @Test
     public void testRestoreString4() {
-    // Test case to verify the restoreString() method when the input string is "team"
-    manipulatedstring.setString("team");
-    // and the indices array is {-1, 0, 1, 2}.
-    int[] array = new int[]{-1, 0, 1, 2};
-    // It should throw an IndexOutOfBoundsException.
-    assertThrows(IndexOutOfBoundsException.class, ()->{manipulatedstring.restoreString(array);});
+        // Test case to verify the restoreString() method when the input string is "team"
+        manipulatedString.setString("team");
+        // and the indices array is {-1, 0, 1, 2}.
+        int[] array = new int[]{-1, 0, 1, 2};
+        // It should throw an IndexOutOfBoundsException.
+        assertThrows(IndexOutOfBoundsException.class, ()->{manipulatedString.restoreString(array);});
     }
-    
+
     @Test
     public void testRestoreString5(){
         // Test case to verify the restoreString() method when the input string is "group"
-        manipulatedstring.setString("group");
+        manipulatedString.setString("group");
         // and the indices array is {5, 0, 1, 2, 3}.
         int[] array = new int[]{5, 0, 1, 2, 3};
         // It should throw an IndexOutOfBoundsException.
-        assertThrows(IndexOutOfBoundsException.class, ()->{manipulatedstring.restoreString(array);});
+        assertThrows(IndexOutOfBoundsException.class, ()->{manipulatedString.restoreString(array);});
     }
-    
+
     @Test
     public void testRestoreString6() {
         // Test case to verify the restoreString() method when the input string is null
-        manipulatedstring.setString(null);
+        manipulatedString.setString(null);
         // and the indices array is {2, 3, 5, 4, 1, 0}.
         int[] array = new int[]{2, 3, 5, 4, 1, 0};
         // It should throw a NullPointerException.
-        assertThrows(NullPointerException.class, ()->{manipulatedstring.restoreString(array);});
-    }    
-    
+        assertThrows(NullPointerException.class, ()->{manipulatedString.restoreString(array);});
+    }
+
     @Test
     public void testRestoreString7() {
         // Test case to verify the restoreString() method when the input string is "MASTER"
-        manipulatedstring.setString("MASTER");
+        manipulatedString.setString("MASTER");
         // and the indices array is {2, 3, 5, 4, 1, 0}.
         int[] array = new int[]{2, 3, 5, 4, 1, 0};
         // It should return the expected output "STREAM".
-        assertEquals("STREAM", manipulatedstring.restoreString(array));
+        assertEquals("STREAM", manipulatedString.restoreString(array));
     }
-    
+
 }
