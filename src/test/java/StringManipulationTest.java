@@ -89,8 +89,8 @@ public class StringManipulationTest {
 
     @Test
     public void testRemoveNthCharacter7() {
-        manipulatedstring.setString("");
-        assertEquals("", manipulatedstring.removeNthCharacter(3, true));
+        manipulatedstring.setString("The space");
+        assertEquals("         ", manipulatedstring.removeNthCharacter(1, true));
     }
 
     @Test
