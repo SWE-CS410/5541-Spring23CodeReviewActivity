@@ -18,10 +18,9 @@ public class StringManipulation implements StringManipulationInterface {
     @Override
     public int count() {
 
-        // If the current stringToManipulate is null, throws an exception
-        if(stringToManipulate == null){
-            throw new NullPointerException("The string is null.");
-        }
+        // if the current stringToManipulate is null, throws a NullPointerException
+        checkForNullString();
+
         // If the stringToManipulate is an empty string, returns 0
         if(stringToManipulate.length()==0){
             return 0;
@@ -37,11 +36,9 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public String removeNthCharacter(int n, boolean maintainSpacing) {
+        // if the current stringToManipulate is null, throws a NullPointerException
+        checkForNullString();
 
-        // If the current stringToManipulate is null, throws an exception
-        if(stringToManipulate == null){
-            throw new NullPointerException("The string is null.");
-        }
         // If the given n is smaller or equal to 0, throws IllegalArgumentException
         if(n <= 0){
             throw new IllegalArgumentException("n must be greater than zero.");
@@ -73,10 +70,9 @@ public class StringManipulation implements StringManipulationInterface {
     @Override
     public String[] getSubStrings(int startWord, int endWord){
 
-        // If the current stringToManipulate is null, throws an exception
-        if(stringToManipulate == null){
-            throw new NullPointerException("The string is null.");
-        }
+        // if the current stringToManipulate is null, throws a NullPointerException
+        checkForNullString();
+
         // If the startWord or the endWord is zero or negative, OR the endWord is smaller than the startWord,
         // throws an exception
         if(startWord <= 0 || endWord <= 0 || startWord > endWord)
@@ -102,11 +98,9 @@ public class StringManipulation implements StringManipulationInterface {
     @Override
     public String restoreString(int[] indices){
 
-        // If the current stringToManipulate is null, throws an exception
-        if(stringToManipulate == null)
-        {
-            throw new NullPointerException("The string is null");
-        }
+        // if the current stringToManipulate is null, throws a NullPointerException
+        checkForNullString();
+
         // If the number of indices are not the same as the length of the string,
         // throws an exception
         if(indices.length != stringToManipulate.length()){
@@ -128,6 +122,13 @@ public class StringManipulation implements StringManipulationInterface {
         return newString.toString();
     }
 
+    /* Helper Functions */
 
+    // Helper function to check if the string is null. If so, throw an NullPointerException
+    private void checkForNullString(){
+        if(stringToManipulate == null) {
+            throw new NullPointerException("The string is null.");
+        }
+    }
 }
 
