@@ -184,18 +184,17 @@ public class StringManipulationTest {
         manipulatedString.setString(null);
         // and the indices array is {2, 3, 5, 4, 1, 0}.
         int[] array = new int[]{2, 3, 5, 4, 1, 0};
-        // It should throw a NullPointerException.
-        assertThrows(NullPointerException.class, ()->{manipulatedString.restoreString(array);});
+        // It should throw an IllegalArgumentException.
+        assertThrows(IllegalArgumentException.class, ()->{manipulatedString.restoreString(array);});
     }
 
     @Test
     public void testRestoreString7() {
         // Test case to verify the restoreString() method when the input string is "MASTER"
         manipulatedString.setString("MASTER");
-        // and the indices array is {2, 3, 5, 4, 1, 0}.
-        int[] array = new int[]{2, 3, 5, 4, 1, 0};
-        // It should return the expected output "STREAM".
-        assertEquals("STREAM", manipulatedString.restoreString(array));
+        // and the indices array is {5, 4, 0, 1, 2, 3}.
+        int[] array = new int[]{5, 4, 0, 1, 2, 3};
+        // It should return the expected output "STERAM".
+        assertEquals("STERAM", manipulatedString.restoreString(array));
     }
-
 }

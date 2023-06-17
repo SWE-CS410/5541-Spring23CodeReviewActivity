@@ -114,7 +114,7 @@ public class StringManipulation implements StringManipulationInterface {
             if (indices[i] < 0 || indices[i] >= this.string.length()) {
                 throw new IndexOutOfBoundsException("Index out of bounds");
             }
-            //place each character at the correct position
+            //place each character at the correct position according to the indices array
             restored[indices[i]] = this.string.charAt(i);
         }
 
