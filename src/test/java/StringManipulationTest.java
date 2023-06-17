@@ -190,11 +190,11 @@ public class StringManipulationTest {
 
     @Test
     public void testRestoreString7() {
-        // Test case to verify the restoreString() method when the input string is "MASTER"
-        manipulatedString.setString("MASTER");
-        // and the indices array is {5, 4, 0, 1, 2, 3}.
-        int[] array = new int[]{5, 4, 0, 1, 2, 3};
-        // It should return the expected output "STERAM".
-        assertEquals("STERAM", manipulatedString.restoreString(array));
+        // Test case to verify the restoreString() method when the input string is "MASTER IS"
+        manipulatedString.setString("MASTER IS");
+        // and the indices array is {5, 4, 0, 1, 2, 3, 6, 7, 8}.
+        int[] array = new int[]{5, 4, 0, 1, 2, 3, 6, 7, 8};
+        // It should return the expected output "STERAM IS".
+        assertEquals("STERAM IS", manipulatedString.restoreString(array));
     }
 }
