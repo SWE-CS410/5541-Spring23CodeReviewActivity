@@ -1,9 +1,10 @@
+//import org.junit.jupiter.api.*;
+//import static org.junit.Assert.assertThrows;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-
 import static org.junit.jupiter.api.Assertions.*;
+
 
 public class StringManipulationTest {
 
@@ -26,19 +27,33 @@ public class StringManipulationTest {
         assertEquals(4, length);
     }
 
+    // This test checks if an empty string will have a word count of 0.
+    // The method should return a count of 0 for a string with 0 words.
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+    	manipulatedstring.setString("");
+        int length = manipulatedstring.count();
+        assertEquals(0, length);
     }
 
+    // This test checks whether the method will return 5 for a string with 5 words
+    // despite a series of spaces at the end of the string. The method should disregard 
+    // all the spaces in string when counting the number of words.
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+    	manipulatedstring.setString("this sentence has 5 words. ");
+        int length = manipulatedstring.count();
+        assertEquals(5, length);
     }
 
+    // This test checks whether the method will return 3 for a string with 3 words
+    // despite the string having a series of spaces in between words. The method should
+    // disregard the number of spaces between words even if they are more than one space.
     @Test
     public void testCount4() {
-        fail("Not yet implemented");
+    	manipulatedstring.setString("1  2  3 ");
+        int length = manipulatedstring.count();
+        assertEquals(3, length);
     }
 
     @Test
@@ -53,29 +68,112 @@ public class StringManipulationTest {
         assertEquals("I'  b tt r  ut s0 e  16 ts in th s  tr n6  r gh ?", manipulatedstring.removeNthCharacter(3, true));
     }
 
+    // This will test whether the method will correctly remove the characters
+    // in a string with 12 characters by a factor of 2. With a factor of 2 and a
+    // string of length 12, the characters at position 2,4,6,8,10,12 will be removed
+    // and since the maintainSpacing parameter is false, then the characters at those
+    // positions will be deleted.
     @Test
     public void testRemoveNthCharacter3() {
-        fail("Not yet implemented");
+    	manipulatedstring.setString("hello world!");
+    	assertEquals("hlowrd", manipulatedstring.removeNthCharacter(2, false));
     }
-
+    
+    // This will test whether the method will correctly remove the characters
+    // in a string with 12 characters by a factor of 3. With a factor of 3 and a
+    // string of length 12, the characters at position 3,6,9,12 will be removed
+    // and since the maintainSpacing parameter is true, then the characters at those
+    // positions will be replaced with a space character.
+    //
+    // The character in the last position will be replaced with a space which will 
+    // maintain the original string length of 12
     @Test
     public void testRemoveNthCharacter4() {
-        fail("Not yet implemented");
+    	manipulatedstring.setString("hello world!");
+    	assertEquals("he lo wo ld ", manipulatedstring.removeNthCharacter(3, true));
     }
 
+    // This will test the maintainSpacing of the method. The given string has a total of 5 
+    // spaces that are originally in the string. With false passed in for maintainSpacing,
+    // the output string should retain the 5 spaces and remove the characters at positions 3n.
     @Test
     public void testRemoveNthCharacter5() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("0 3  6  9");
+        assertEquals("0     ", manipulatedstring.removeNthCharacter(3, false));
     }
-
+    
+    // This new test is in response to Alvin Bautista's GitHub code review:
+    //
+    // This test will test 9 different test cases: 1 <= n <= 9
+    //
+    // Thanks for the comment, Alvin!
+    @Test
+    public void testRemoveNthCharacter8() {
+        manipulatedstring.setString("123456789");
+        
+        for (int n = 1; n <= 9; n++) {
+        	switch (n) {
+        		case 1:
+        			assertEquals("", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 2:
+        			assertEquals("13579", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 3:
+        			assertEquals("124578", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 4:
+        			assertEquals("1235679", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 5:
+        			assertEquals("12346789", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 6:
+        			assertEquals("12345789", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 7:
+        			assertEquals("12345689", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 8:
+        			assertEquals("12345679", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 9:
+        			assertEquals("12345678", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        	}
+        }
+    }
+    
+    // This will test that the method will throw an IndexOutOfBoundsException()
+    // if n is greater than the string length, it is not possible to remove characters
+    // by a factor that is greater than the length of the string.
+    //
+    // In this test case, the string has a total of 19 characters, and the nth parameter
+    // that is passed in is 20, therefore, there is no 20th character to remove, and
+    // the method will catch this 20th index as out of bounds for the string.
     @Test
     public void testRemoveNthCharacter6() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("index out of bounds");
+        
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+        	manipulatedstring.removeNthCharacter(20, true);
+        });
     }
 
+    // This will test that the method will throw an IllegalArgumentException()
+    // if n <= 0 then that is not a valid factor to remove characters by.
+    
+    // In this test case, the string has a total of 26 characters, and the nth parameter
+    // that is passed in is 0, therefore, the parameter is invalid because 0n is always 0, 
+    // which is not a valid factor, as the method calls for the first index position
+    // of the string as position 1. The method will catch this and throw an error.
     @Test
     public void testRemoveNthCharacter7() {
-        fail("Not yet implemented");
+    	manipulatedstring.setString("illegal argument exception");
+        
+        assertThrows(IllegalArgumentException.class, () -> {
+        	manipulatedstring.removeNthCharacter(0, false);
+        });
     }
 
     @Test
@@ -87,25 +185,69 @@ public class StringManipulationTest {
         assertEquals(sStings[1], "string");
     }
 
+    // This test will grab the second through the fifth word in the string,
+    // despite the series of spaces in between the words. The number of spaces in
+    // between words should not affect the method.
     @Test
     public void testGeSubStrings2() {
-        fail("Not yet implemented");
+    	manipulatedstring.setString("test    string  that    has   many        spaces");
+        String [] sStings = manipulatedstring.getSubStrings(2, 5);
+
+        assertEquals(sStings[0], "string");
+        assertEquals(sStings[1], "that");
+        assertEquals(sStings[2], "has");
+        assertEquals(sStings[3], "many");
     }
+    
+    // This test will test grab only the first word in the string, by taking
+    // the startWord as the first word and taking the endWord as the last word.
+    // The method should allow only one word to be plucked from the string by
+    // taking both the startWord and endWord parameter as the same number.
+    // This test also checks whether the series of spaces in between the two words
+    // will affect the output. A series of spaces between words should not have an affect.
     @Test
     public void testGeSubStrings3() {
-        fail("Not yet implemented");
+    	manipulatedstring.setString("test      string");
+        String [] sStings = manipulatedstring.getSubStrings(1, 1);
+
+        assertEquals(sStings[0], "test");
     }
+    
+    // This test will grab only the last word in the string of many words, all with
+    // a series of spaces in between the words. The startWord and endWord parameters
+    // are the same number which is the number for the last word in the string.
     @Test
     public void testGeSubStrings4() {
-        fail("Not yet implemented");
+    	manipulatedstring.setString("another         test of    this     method");
+        String [] sStings = manipulatedstring.getSubStrings(5, 5);
+
+        assertEquals(sStings[0], "method");
     }
+    
+    // This will test the method if it correctly returns an IllegalArgumentException().
+    // If the startWord parameter is <= 0 or if startWord > endWord,
+    // then the method will through an IllegalArgumentException. This test will catch
+    // both of these illegal cases and throw the appropriate exception.
     @Test
     public void testGeSubStrings5() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("illegal argument exception");
+        
+        assertThrows(IllegalArgumentException.class, () -> {
+        	manipulatedstring.getSubStrings(0, -5);
+        });
     }
+    
+    // This will test the method if it correctly returns an IndexOutOfBoundsException().
+    // If the parameter passed in for endWord is greater than the count of words in the 
+    // string then the method should throw an IndexOutOfBounds exception. In this 
+    // test, the endWord is 6 for only a string with a word count of 5, throwing an error.
     @Test
     public void testGeSubStrings6() {
-        fail("Not yet implemented");
+    	manipulatedstring.setString("index out of bounds exception");
+        
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+        	manipulatedstring.getSubStrings(2, 6);
+        });
     }
 
     @Test
@@ -118,32 +260,87 @@ public class StringManipulationTest {
         assertEquals(restoreString, "rat");
     }
 
+    // This will test the method if it will swap the two words in the string.
+    // With the space seperating the word staying in it's place, the test
+    // will take each character from each side of the space and swap then for the 
+    // character on the other side of the space and output a swapped string of two words.
     @Test
     public void testRestoreString2()
     {
-        fail("Not yet implemented");
+    	manipulatedstring.setString("four five");
+        int [] array;
+        array=new int[]{5,6,7,8,4,0,1,2,3};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "five four");
+
+    }
+    
+    // This new test is in response to Alvin Bautista's GitHub code review:
+    //
+    // Since whitespace characters are a string (substring) then the method
+    // will take the whitespace and move it to the appropriate index that
+    // the int array calls for.
+    //
+    // Thanks for the comment, Alvin!
+    @Test
+    public void testRestoreString6()
+    {
+    	manipulatedstring.setString("move all spaces to end of string");
+        int [] array;
+        array=new int[]{0,1,2,3,26,4,5,6,27,7,8,9,10,11,12,28,13,14,29,15,16,17,30,18,19,31,20,21,22,23,24,25};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "moveallspacestoendofstring      ");
 
     }
 
+    // This will test the method to move all spaces in between the characters into 
+    // one large space after the first character. 
     @Test
     public void testRestoreString3()
     {
-        fail("Not yet implemented");
+    	manipulatedstring.setString("a b c d e f g");
+        int [] array;
+        array=new int[]{0,1,7,2,8,3,9,4,10,5,11,6,12};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "a      bcdefg");
 
     }
 
+    // This will test if the method will throw an IllegalArgumentException().
+    // The method should accept an int array of equal size to the string that is 
+    // being manipulated. In this test case, the string has 24 characters, and the
+    // int array that is passed in only has 6 elements. Therefore, this is an invalid
+    // size of int array, throwing an illegal argument exception.
     @Test
     public void testRestoreString4()
     {
-        fail("Not yet implemented");
-
+    	manipulatedstring.setString("illegalargumentexception");
+        int [] array;
+        array=new int[]{5,4,3,2,1,0};
+        
+        assertThrows(IllegalArgumentException.class, () -> {
+        	manipulatedstring.restoreString(array);
+        });
     }
 
+    // This will test if the method will throw an IndexOutOfBoundsException().
+    // The method should accept an int array that is comprised of elements that 
+    // correspond to the elements of characters in the string. If any of the elements
+    // in the int array is less than 0 or greater than or equal to the string length, 
+    // then that is an invalid element number for a string. In this test case,
+    // -1 and 5 are elements in the int array. There is no -1 character element in any 
+    // string and there is no character element of 5 for the given string which has
+    // character elements 0 through 4. These parameters will throw an exception.
     @Test
     public void testRestoreString5()
     {
-        fail("Not yet implemented");
-
+    	manipulatedstring.setString("ioobe");
+        int [] array;
+        array=new int[]{0,-1,2,5,4};
+        
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+        	manipulatedstring.restoreString(array);
+        });
     }
-
 }
+
