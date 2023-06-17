@@ -129,6 +129,20 @@ public class StringManipulationTest {
         assertEquals("he i", manipulatedstring.removeNthCharacter(3, false));
     }
 
+    // tested if 1 = n and false should leave string empty
+    @Test
+    public void testRemoveNthCharacter9() {
+        manipulatedstring.setString("hey i");
+        assertEquals("", manipulatedstring.removeNthCharacter(1, false));
+    }
+
+    // tested if 1 = n and true should leave string  5 empty spaces
+    @Test
+    public void testRemoveNthCharacter10() {
+        manipulatedstring.setString("hey i");
+        assertEquals("     ", manipulatedstring.removeNthCharacter(1, true));
+    }
+
     @Test
     public void testGeSubStrings1() {
         manipulatedstring.setString("This is my string");
