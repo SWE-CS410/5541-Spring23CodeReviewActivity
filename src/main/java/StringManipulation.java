@@ -14,7 +14,11 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public int count() {
+
         String string = getString();
+        if (string.isBlank()){
+            return 0;
+        }
         String[] words = string.split("\\s+");
         return words.length;
 

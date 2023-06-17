@@ -32,7 +32,7 @@ public class StringManipulationTest {
     public void testCount2() {
         manipulatedstring.setString("");
         int length = manipulatedstring.count();
-        assertEquals(1, length);
+        assertEquals(0, length);
     }
 
     // testcount()3 test to see  tab  and  new line  it should  print 0
