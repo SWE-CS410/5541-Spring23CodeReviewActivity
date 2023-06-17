@@ -24,11 +24,16 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public String removeNthCharacter(int n, boolean maintainSpacing) {
+        String theString = getString();
+
+        if(n > theString.length()){
+            throw new IndexOutOfBoundsException("N cannot be larger than the length of Sting");
+        }
+
         if(n <= 0){
             throw new IllegalArgumentException("Input n cannot be 0 or negative");
         }
 
-        String theString = getString();
         StringBuilder sb = new StringBuilder(theString);
 
         if(maintainSpacing){ //replace the nth letter with a space
@@ -72,6 +77,10 @@ public class StringManipulation implements StringManipulationInterface {
     public String restoreString(int[] indices){
         if(indices == null || this.pString == null) {
             throw new IllegalArgumentException("There are no input");
+        }
+
+        if(indices.length == 0 || this.pString.length() == 0){
+            throw new IllegalArgumentException("The indices or String is 0");
         }
 
         if(indices.length != this.pString.length()) {

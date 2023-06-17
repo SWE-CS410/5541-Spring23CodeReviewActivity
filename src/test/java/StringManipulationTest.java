@@ -74,7 +74,11 @@ public class StringManipulationTest {
     @Test
     public void testRemoveNthCharacter5() {
         manipulatedstring.setString("This message should be unreadable");
-        assertEquals("Ths esag soud e nradbl", manipulatedstring.removeNthCharacter(3, false));
+        assertThrows(
+                IndexOutOfBoundsException.class, () -> {
+                    assertEquals("", manipulatedstring.removeNthCharacter(100, false));
+                }
+        );
     }
 
     @Test
@@ -100,11 +104,14 @@ public class StringManipulationTest {
 
     @Test
     public void testGeSubStrings2() {
-        manipulatedstring.setString("This is another string");
-        String [] sStings = manipulatedstring.getSubStrings(1, 4);
+        manipulatedstring.setString("This change is requested by Caleb");
 
-        assertEquals("This", sStings[0]);
-        assertEquals("string", sStings[3]);
+
+        assertThrows(
+                IllegalArgumentException.class, () -> {
+                    String [] sStings = manipulatedstring.getSubStrings(6, 1);
+                }
+        );
     }
 
     @Test
@@ -137,10 +144,11 @@ public class StringManipulationTest {
     @Test
     public void testGeSubStrings6() {
         manipulatedstring.setString("This string is the last test string");
-        String [] sStings = manipulatedstring.getSubStrings(5, 7);
-
-        assertEquals("last", sStings[0]);
-        assertEquals("string", sStings[2]);
+        assertThrows(
+                IndexOutOfBoundsException.class, () -> {
+                    String [] sStings = manipulatedstring.getSubStrings(1, 100);
+                }
+        );
     }
 
     @Test
@@ -181,11 +189,14 @@ public class StringManipulationTest {
 
     @Test
     public void testRestoreString5() {
-        manipulatedstring.setString("bat");
+        manipulatedstring.setString("");
         int [] array;
         array=new int[]{2,1,0};
-        String restoreString = manipulatedstring.restoreString(array);
-        assertEquals("tab", restoreString);
+        assertThrows(
+                IllegalArgumentException.class, () -> {
+                    String restoreString = manipulatedstring.restoreString(array);
+                }
+        );
     }
 
 }
