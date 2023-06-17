@@ -102,6 +102,48 @@ public class StringManipulationTest {
         assertEquals("0     ", manipulatedstring.removeNthCharacter(3, false));
     }
     
+    // This new test is in response to Alvin Bautista's GitHub code review:
+    //
+    // This test will test 9 different test cases: 1 <= n <= 9
+    //
+    // Thanks for the comment, Alvin!
+    @Test
+    public void testRemoveNthCharacter8() {
+        manipulatedstring.setString("123456789");
+        
+        for (int n = 1; n <= 9; n++) {
+        	switch (n) {
+        		case 1:
+        			assertEquals("", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 2:
+        			assertEquals("13579", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 3:
+        			assertEquals("124578", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 4:
+        			assertEquals("1235679", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 5:
+        			assertEquals("12346789", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 6:
+        			assertEquals("12345789", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 7:
+        			assertEquals("12345689", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 8:
+        			assertEquals("12345679", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        		case 9:
+        			assertEquals("12345678", manipulatedstring.removeNthCharacter(n, false));
+        			break;
+        	}
+        }
+    }
+    
     // This will test that the method will throw an IndexOutOfBoundsException()
     // if n is greater than the string length, it is not possible to remove characters
     // by a factor that is greater than the length of the string.
