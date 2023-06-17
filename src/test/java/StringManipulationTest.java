@@ -232,6 +232,24 @@ public class StringManipulationTest {
         assertEquals(restoreString, "five four");
 
     }
+    
+    // This new test is in response to Alvin Bautista's GitHub code review:
+    //
+    // Since whitespace characters are a string (substring) then the method
+    // will take the whitespace and move it to the appropriate index that
+    // the int array calls for.
+    //
+    // Thanks for the comment, Alvin!
+    @Test
+    public void testRestoreString6()
+    {
+    	manipulatedstring.setString("move all spaces to end of string");
+        int [] array;
+        array=new int[]{0,1,2,3,26,4,5,6,27,7,8,9,10,11,12,28,13,14,29,15,16,17,30,18,19,31,20,21,22,23,24,25};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "moveallspacestoendofstring      ");
+
+    }
 
     // This will test the method to move all spaces in between the characters into 
     // one large space after the first character. 
