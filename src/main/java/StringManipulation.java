@@ -16,7 +16,7 @@ public class StringManipulation implements StringManipulationInterface {
     @Override
     public int count() {
 
-        if (string == null){
+        if (string == null || string.isEmpty()){
             return 0;
         }
 

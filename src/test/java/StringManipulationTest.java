@@ -48,6 +48,12 @@ public class StringManipulationTest {
         int length = manipulatedstring.count();
         assertEquals(1, length);
     }
+    @Test
+    public void testCount5() {
+        manipulatedstring.setString("");
+        int length = manipulatedstring.count();
+        assertEquals(0, length);
+    }
 
     @Test
     public void testRemoveNthCharacter1() {
@@ -90,6 +96,13 @@ public class StringManipulationTest {
         manipulatedstring.setString("1234567890");
         assertEquals("1357", manipulatedstring.removeNthCharacter(2, false));
     }
+    @Test
+    public void testRemoveNthCharacterInvalidN() {
+        manipulatedstring.setString("This is my string");
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.removeNthCharacter(0, true);
+        });
+    }
 
     @Test
     public void testGeSubStrings1() {
@@ -125,6 +138,40 @@ public class StringManipulationTest {
         assertEquals("Try", subStrings[0]);
         assertEquals("this", subStrings[1]);
     }
+
+    @Test
+    public void testGetSubStringsInvalidStartWord() {
+        manipulatedstring.setString("This is my string");
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.getSubStrings(0, 4);
+        });
+    }
+    @Test
+    public void testGetSubStringsInvalidEndWord() {
+        manipulatedstring.setString("This is my string");
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.getSubStrings(2, 0);
+        });
+    }
+
+    @Test
+    public void testGetSubStringsStartGreaterThanEnd() {
+        manipulatedstring.setString("This is my string");
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.getSubStrings(3, 2);
+        });
+    }
+
+    @Test
+    public void testGetSubStringsEndWordOutOfBounds() {
+        manipulatedstring.setString("This is my string");
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            manipulatedstring.getSubStrings(1, 5);
+        });
+    }
+
+
+
 
     @Test
     public void testRestoreString1()
@@ -171,4 +218,23 @@ public class StringManipulationTest {
         String restoreString = manipulatedstring.restoreString(array);
         assertEquals("openai", restoreString);
     }
+
+    @Test
+    public void testRestoreStringInvalidIndicesLength() {
+        manipulatedstring.setString("UnitTest");
+        int[] indices = {1, 2, 3, 4}; // Invalid indices length
+        assertThrows(IllegalArgumentException.class, () -> {
+            manipulatedstring.restoreString(indices);
+        });
+    }
+    @Test
+    public void testRestoreStringInvalidIndex() {
+        manipulatedstring.setString("UnitTest");
+        int[] indices = {1, 3, 6, 8, 0, 2, 5, 7}; // Invalid index value 8
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            manipulatedstring.restoreString(indices);
+        });
+    }
+
+
 }

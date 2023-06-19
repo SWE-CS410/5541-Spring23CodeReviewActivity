@@ -79,10 +79,10 @@ public interface StringManipulationInterface {
      * The string s will be shuffled such that the character at the ith position moves to indices[i] in the shuffled string.
      * Return the shuffled string.
      * example:
-     * Input: string = "UnitTest", indices = [4,5,6,7,0,1,2,3]
+     * Input: string = "UnitTest", indices = [4,5,6,7,0,2,1,3]
      * Output: "TestUnit"
      * Explanation:
-     * indices: 4 5 6 7 0 1 2 3
+     * indices: 4 5 6 7 0 2 1 3
      * String:  U n i t T e s t
      * Actions to Shuffle: Shift U to 4th position, n to 5th position, i to 6th position ......
      * Output: T e s t U n i t
@@ -95,7 +95,7 @@ public interface StringManipulationInterface {
      * indices length is the same as the string length.
      *
      * throws IllegalArgumentException if not s.length == indices.length == n
-     * throws IndexOutOfBoundsException if   indices[i]< 0  or  indices[i]>= string length
+     * throws IndexOutOfBoundsException if   indices[i]< 0  or  indices[i]> string length
      *
      * @param indices is an integer array for shuffled string new indices positions
      * the character at the ith position moves to indices[i] in the shuffled string.
