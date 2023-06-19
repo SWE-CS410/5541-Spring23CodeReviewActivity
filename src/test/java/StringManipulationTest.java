@@ -27,6 +27,13 @@ public class StringManipulationTest {
     }
 
     @Test
+    //this test checks for correct output
+    public void testGetString() {
+        String str = manipulatedstring.getString();
+        assertEquals(null, str);
+    }
+
+    @Test
     //this test check for correct output
     public void testCount1() {
         manipulatedstring.setString("This is my string");
@@ -52,41 +59,41 @@ public class StringManipulationTest {
     @Test
     //this test check for correct output
     public void testCount4() {
-        manipulatedstring.setString("hunkady hunkad hunka hunk hun hu h");
+        manipulatedstring.setString("!!!!!! .... ,,,,");
         int length = manipulatedstring.count();
-        assertEquals(7, length);
+        assertEquals(0, length);
     }
 
     @Test
     //this test check for correct output
-    public void testRemoveNthCharacter1() throws Exception {
+    public void testRemoveNthCharacter1() {
         manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
         assertEquals("I' bttr uts0e 16tsinths trn6 rgh?", manipulatedstring.removeNthCharacter(3, false));
     }
 
     @Test
     //this test check for correct output
-    public void testRemoveNthCharacter2() throws Exception {
+    public void testRemoveNthCharacter2() {
         manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
         assertEquals("I'  b tt r  ut s0 e  16 ts in th s  tr n6  r gh ?", manipulatedstring.removeNthCharacter(3, true));
     }
 
     @Test
     //this test check for correct output by leaving the string with its default value
-    public void testRemoveNthCharacter3() throws Exception {
+    public void testRemoveNthCharacter3() {
         assertEquals(null, manipulatedstring.removeNthCharacter(3, false));
     }
 
     @Test
     //this test check for correct output by giving the string an empty string value
-    public void testRemoveNthCharacter4() throws Exception {
+    public void testRemoveNthCharacter4() {
         manipulatedstring.setString("");
         assertEquals("", manipulatedstring.removeNthCharacter(4, true));
     }
 
     @Test
     //this test checks to see if the IllegalArgumentException is thrown
-    public void testRemoveNthCharacter5() throws Exception {
+    public void testRemoveNthCharacter5() {
         manipulatedstring.setString("Hi Sara!");
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -106,14 +113,14 @@ public class StringManipulationTest {
 
     @Test
     //this test check for correct output
-    public void testRemoveNthCharacter7() throws Exception {
+    public void testRemoveNthCharacter7() {
         manipulatedstring.setString("CS4420");
         assertEquals("CS420", manipulatedstring.removeNthCharacter(4, false));
     }
 
     @Test
     //this test check for correct output
-    public void testGetSubStrings1() throws Exception {
+    public void testGetSubStrings1() {
         manipulatedstring.setString("This is my string");
         String [] sStings = manipulatedstring.getSubStrings(3, 4);
 
@@ -154,7 +161,7 @@ public class StringManipulationTest {
 
     @Test
     //this test checks to see if the IndexOutOfBoundsException is thrown
-    public void testGetSubStrings5() throws Exception {
+    public void testGetSubStrings5() {
         manipulatedstring.setString("I need some sleep");
 
         assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -174,7 +181,7 @@ public class StringManipulationTest {
 
     @Test
     //this test check for correct output
-    public void testRestoreString1() throws Exception {
+    public void testRestoreString1() {
         manipulatedstring.setString("art");
         int [] array;
         array=new int[]{1,0,2};
@@ -184,7 +191,7 @@ public class StringManipulationTest {
 
     @Test
     //this test check to see if the IndexOutOfBoundsException is thrown
-    public void testRestoreString2() throws Exception {
+    public void testRestoreString2() {
         manipulatedstring.setString("acro");
         int[] array;
         array = new int[] {3, 2, -1, 0};
@@ -222,7 +229,7 @@ public class StringManipulationTest {
 
     @Test
     //this test check for correct output
-    public void testRestoreString5() throws Exception {
+    public void testRestoreString5() {
         manipulatedstring.setString("UnitTest");
         int [] array;
         array=new int[]{4, 5, 6, 7, 0, 1, 2, 3};

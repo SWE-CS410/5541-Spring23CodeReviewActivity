@@ -4,6 +4,10 @@ CS410 - Sara Farag
 6/13/2023
 This file contains the implementations for the string manipulations class.
 */
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringManipulation implements StringManipulationInterface {
 
     String current = null;
@@ -22,8 +26,15 @@ public class StringManipulation implements StringManipulationInterface {
         if(current == null || current.isEmpty()) //empty or null string have a length of 0
             return 0;
 
-        String[] wordcount = current.trim().split(" "); //gets rid of whitespace from the front and back
-        return wordcount.length;
+        Pattern pattern = Pattern.compile("\\w+");
+        Matcher matcher = pattern.matcher(current);
+
+        int count = 0;
+        while(matcher.find()) {
+            count++;
+        }
+
+        return count;
     }
 
     @Override
@@ -88,7 +99,7 @@ public class StringManipulation implements StringManipulationInterface {
 
         String newStr = "";
         for(int i = 0; i < indices.length; i++) {
-            if(indices[i] < 0 || indices[i] > current.length() - 1) {
+            if(indices[i] < 0 || indices[i] >= current.length()) {
                 throw new IndexOutOfBoundsException();
             }
             newStr += current.charAt(indices[i]);
