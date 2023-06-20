@@ -28,18 +28,25 @@ public class StringManipulationTest {
 
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("This string has five words");
+        int length = manipulatedstring.count();
+        assertEquals(5, length);
     }
 
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("");
+        int length = manipulatedstring.count();
+        assertEquals(0, length);
     }
 
     @Test
     public void testCount4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString(null);
+        int length = manipulatedstring.count();
+        assertEquals(0, length);
     }
+
 
     @Test
     public void testRemoveNthCharacter1() {
@@ -55,28 +62,47 @@ public class StringManipulationTest {
 
     @Test
     public void testRemoveNthCharacter3() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Hello World!");
+        String result = manipulatedstring.removeNthCharacter(1, false);
+        assertEquals("", result);
     }
 
     @Test
     public void testRemoveNthCharacter4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Hello World!");
+        String result = manipulatedstring.removeNthCharacter(2, true);
+        assertEquals("H l o W r d ", result);
     }
 
     @Test
     public void testRemoveNthCharacter5() {
-        fail("Not yet implemented");
+        try {
+            manipulatedstring.removeNthCharacter(0, true);
+            fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+            // Test passes if this exception is thrown
+        }
     }
 
     @Test
     public void testRemoveNthCharacter6() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("Hello");
+        try {
+            manipulatedstring.removeNthCharacter(10, false);
+            fail("Expected an IndexOutOfBoundsException to be thrown");
+        } catch (IndexOutOfBoundsException e) {
+            // Test passes if this exception is thrown
+        }
     }
+
 
     @Test
     public void testRemoveNthCharacter7() {
-        fail("Not yet implemented");
+        manipulatedstring.setString(null);
+        String result = manipulatedstring.removeNthCharacter(1, false);
+        assertNull(result);
     }
+
 
     @Test
     public void testGeSubStrings1() {
@@ -89,24 +115,50 @@ public class StringManipulationTest {
 
     @Test
     public void testGeSubStrings2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("This is a longer string that has more than four words");
+        String [] subStrings = manipulatedstring.getSubStrings(5, 7);
+
+        assertEquals(subStrings[0], "string");
+        assertEquals(subStrings[1], "that");
+        assertEquals(subStrings[2], "has");
     }
+
     @Test
     public void testGeSubStrings3() {
-        fail("Not yet implemented");
+        try {
+            manipulatedstring.getSubStrings(0, 1);
+            fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+            // Test passes if this exception is thrown
+        }
     }
+
     @Test
     public void testGeSubStrings4() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("This is a string");
+        try {
+            manipulatedstring.getSubStrings(1, 5);
+            fail("Expected an IndexOutOfBoundsException to be thrown");
+        } catch (IndexOutOfBoundsException e) {
+            // Test passes if this exception is thrown
+        }
     }
+
+
     @Test
     public void testGeSubStrings5() {
-        fail("Not yet implemented");
+        manipulatedstring.setString(null);
+        String[] result = manipulatedstring.getSubStrings(1, 1);
+        assertNull(result);
     }
+
     @Test
     public void testGeSubStrings6() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("");
+        String[] result = manipulatedstring.getSubStrings(1, 1);
+        assertEquals(1, result.length);
     }
+
 
     @Test
     public void testRestoreString1()
@@ -121,29 +173,44 @@ public class StringManipulationTest {
     @Test
     public void testRestoreString2()
     {
-        fail("Not yet implemented");
-
+        manipulatedstring.setString("unittest");
+        int [] array = {0,1,2,3,4,5,6,7};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "unittest");
     }
 
     @Test
-    public void testRestoreString3()
-    {
-        fail("Not yet implemented");
-
+    public void testRestoreString3() {
+        try {
+            manipulatedstring.setString("unittest");
+            int [] array = {0,1,2};
+            manipulatedstring.restoreString(array);
+            fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+            // Test passes if this exception is thrown
+        }
     }
 
     @Test
-    public void testRestoreString4()
-    {
-        fail("Not yet implemented");
-
+    public void testRestoreString4() {
+        try {
+            manipulatedstring.setString("unittest");
+            int [] array = {0,1,2,3,4,5,6,8};
+            manipulatedstring.restoreString(array);
+            fail("Expected an IndexOutOfBoundsException to be thrown");
+        } catch (IndexOutOfBoundsException e) {
+            // Test passes if this exception is thrown
+        }
     }
+
 
     @Test
     public void testRestoreString5()
     {
-        fail("Not yet implemented");
-
+        manipulatedstring.setString(null);
+        int [] array = {0,1,2};
+        String result = manipulatedstring.restoreString(array);
+        assertNull(result);
     }
 
 }
