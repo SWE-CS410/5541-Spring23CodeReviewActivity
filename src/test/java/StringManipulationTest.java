@@ -1,7 +1,3 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,12 +5,12 @@ public class StringManipulationTest {
 
     private StringManipulationInterface manipulatedstring;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         manipulatedstring = new StringManipulation();
     }
 
-    @AfterEach
+    @After
     public void tearDown() {
         manipulatedstring = null;
     }
@@ -28,17 +24,26 @@ public class StringManipulationTest {
 
     @Test
     public void testCount2() {
-        fail("Not yet implemented");
+        // test checks for leading whitespace being ignored
+        manipulatedstring.setString("   this is string");
+        int num = manipulatedstring.count();
+        assertEquals(3, num);
     }
 
     @Test
     public void testCount3() {
-        fail("Not yet implemented");
+        // test checks for a single word in string
+        manipulatedstring.setString("string");
+        int num = manipulatedstring.count();
+        assertEquals(1, num);
     }
 
-    @Test
+    @org.junit.Test
     public void testCount4() {
-        fail("Not yet implemented");
+        // test checks for a string that ends in whitespace
+        manipulatedstring.setString("a string ");
+        int num = manipulatedstring.count();
+        assertEquals(2, num);        
     }
 
     @Test
@@ -55,27 +60,37 @@ public class StringManipulationTest {
 
     @Test
     public void testRemoveNthCharacter3() {
-        fail("Not yet implemented");
+        // test removes only last character
+        manipulatedstring.setString("last.");
+        assertEquals("last",manipulatedstring.removeNthCharacter(5, false));
     }
 
     @Test
     public void testRemoveNthCharacter4() {
-        fail("Not yet implemented");
+        // tests for no whitepace while maintiaining spacing
+        manipulatedstring.setString("maintainspacing");
+        assertEquals("ma nt in pa in ", manipulatedstring.removeNthCharacter(3,true));
     }
 
     @Test
     public void testRemoveNthCharacter5() {
-        fail("Not yet implemented");
-    }
+        // test removes every character without spacing
+        manipulatedstring.setString("test remove every character(1) without spacing");
+        assertEquals("", manipulatedstring.removeNthCharacter(1, false));
+    }   
 
     @Test
     public void testRemoveNthCharacter6() {
-        fail("Not yet implemented");
+        //remove each char but keep spacing
+        manipulatedstring.setString("string");
+        assertEquals("      ", manipulatedstring.removeNthCharacter(1,true));
     }
 
     @Test
     public void testRemoveNthCharacter7() {
-        fail("Not yet implemented");
+        // test n > 9
+        manipulatedstring.setString("one last test for anyone");
+        assertEquals("one last est for ayone", manipulatedstring.removeNthCharacter(10, false));
     }
 
     @Test
@@ -89,25 +104,42 @@ public class StringManipulationTest {
 
     @Test
     public void testGeSubStrings2() {
-        fail("Not yet implemented");
+        manipulatedstring.setString("This is my string");
+        String [] sStings = manipulatedstring.getSubStrings(1, 4);
+        assertEquals(sStings[0], "This");
+        assertEquals(sStings[3], "string");
     }
+
     @Test
     public void testGeSubStrings3() {
-        fail("Not yet implemented");
+        // test for ignoring leading whitespace
+        manipulatedstring.setString("          This is my string");
+        String [] sStings = manipulatedstring.getSubStrings(1, 4);
+        assertEquals(sStings[0], "This");
+        assertEquals(sStings[3], "string");
     }
     @Test
     public void testGeSubStrings4() {
-        fail("Not yet implemented");
+        // test for ignoring whitespace in string
+        manipulatedstring.setString("This     is my       string");
+        String [] sStings = manipulatedstring.getSubStrings(1, 4);  
+        assertEquals(sStings[0], "This");
+        assertEquals(sStings[3], "string");  
     }
     @Test
     public void testGeSubStrings5() {
-        fail("Not yet implemented");
+        // test for correctly retrieving one substring in one word
+        manipulatedstring.setString("onlyoneword");
+        String [] sStings = manipulatedstring.getSubStrings(1,1);
+        assertEquals("onlyoneword", sStings[0]);
     }
     @Test
     public void testGeSubStrings6() {
-        fail("Not yet implemented");
+        // test for correctly retrieving one substring in multiple word string
+        manipulatedstring.setString("only one substring");
+        String [] sStings = manipulatedstring.getSubStrings(1,1);    
+        assertEquals("only", sStings[0]);
     }
-
     @Test
     public void testRestoreString1()
     {
@@ -121,29 +153,45 @@ public class StringManipulationTest {
     @Test
     public void testRestoreString2()
     {
-        fail("Not yet implemented");
-
+        // test swapping end and beginning chars
+        manipulatedstring.setString("foot");
+        int [] array;
+        array=new int[]{3,1,2,0};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "toof");
     }
 
     @Test
     public void testRestoreString3()
     {
-        fail("Not yet implemented");
-
+        // test reversing order
+        manipulatedstring.setString("racecar");
+        int [] array;
+        array=new int[]{6,5,4,3,2,1,0};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString, "racecar");
     }
 
     @Test
     public void testRestoreString4()
     {
-        fail("Not yet implemented");
-
+        // test single char word
+        manipulatedstring.setString("a");
+        int [] array;
+        array=new int[]{0};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString,"a");
     }
 
     @Test
     public void testRestoreString5()
     {
-        fail("Not yet implemented");
-
+        // test empty string
+        manipulatedstring.setString("");
+        int [] array;
+        array=new int[]{};
+        String restoreString = manipulatedstring.restoreString(array);
+        assertEquals(restoreString,"");
     }
 
 }
