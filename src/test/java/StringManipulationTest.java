@@ -45,9 +45,15 @@ public class StringManipulationTest {
      * */
     @Test
     public void testCount3() {
-        manipulatedstring.setString(null);
-        int length = manipulatedstring.count();
-        assertEquals(0, length);
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            manipulatedstring.setString(null);
+            manipulatedstring.count();
+        });
+
+        String expectedMessage = "String is null.";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     /**
@@ -66,7 +72,7 @@ public class StringManipulationTest {
      * */
     @Test
     public void testCount5() {
-        manipulatedstring.setString(" this is hello world !!!!! ");
+        manipulatedstring.setString(" This is hello world. !!!!! ");
         int length = manipulatedstring.count();
         assertEquals(4, length);
     }
@@ -107,7 +113,7 @@ public class StringManipulationTest {
      * */
     @Test
     public void testRemoveNthCharacter4() {
-        Exception exception = assertThrows(RuntimeException.class, () -> {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             manipulatedstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
             manipulatedstring.removeNthCharacter(-300, true);
         });
@@ -140,8 +146,15 @@ public class StringManipulationTest {
      * */
     @Test
     public void testRemoveNthCharacter6() {
-        manipulatedstring.setString(null);
-        assertEquals(null, manipulatedstring.removeNthCharacter(3, true));
+        Exception exception = assertThrows(NullPointerException.class, () -> {
+            manipulatedstring.setString(null);
+            manipulatedstring.removeNthCharacter(3, true);
+        });
+
+        String expectedMessage = "String is null.";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     /**
@@ -151,9 +164,20 @@ public class StringManipulationTest {
     public void testGeSubStrings1() {
         manipulatedstring.setString("This is my string");
         String [] sStings = manipulatedstring.getSubStrings(3, 4);
-
         assertEquals(sStings[0], "my");
         assertEquals(sStings[1], "string");
+    }
+    /**
+     *
+     * */
+    @Test
+    public void testGeSubStrings2() {
+        manipulatedstring.setString("This is my string");
+        String [] sStings = manipulatedstring.getSubStrings(2, 4);
+
+        assertEquals(sStings[0], "is");
+        assertEquals(sStings[1], "my");
+        assertEquals(sStings[2], "string");
     }
     /**
      *  this test is to check if the negative or 0 inputs produce
@@ -161,8 +185,8 @@ public class StringManipulationTest {
      *
      * */
     @Test
-    public void testGeSubStrings2() {
-        Exception exception = assertThrows(RuntimeException.class, () -> {
+    public void testGeSubStrings3() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             manipulatedstring.setString("This is my string");
             String [] sStings = manipulatedstring.getSubStrings(0, -4);
 
@@ -178,7 +202,7 @@ public class StringManipulationTest {
      *  the IllegalArgumentException
      * */
     @Test
-    public void testGeSubStrings3() {
+    public void testGeSubStrings4() {
         Exception exception = assertThrows(RuntimeException.class, () -> {
             manipulatedstring.setString("This is my string");
             String [] sStings = manipulatedstring.getSubStrings(4, 3);
@@ -193,7 +217,7 @@ public class StringManipulationTest {
      * this is to check if the string has less than "endWord" words in it
      * */
     @Test
-    public void testGeSubStrings4() {
+    public void testGeSubStrings5() {
         Exception exception = assertThrows(RuntimeException.class, () -> {
             manipulatedstring.setString("This is my string");
             String [] sStings = manipulatedstring.getSubStrings(3, 6);
@@ -225,7 +249,7 @@ public class StringManipulationTest {
     @Test
     public void testRestoreString2()
     {
-        Exception exception = assertThrows(RuntimeException.class, () -> {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             manipulatedstring.setString("art");
             int [] array;
             array=new int[]{1,0,2,3};
@@ -245,7 +269,7 @@ public class StringManipulationTest {
     @Test
     public void testRestoreString3()
     {
-        Exception exception = assertThrows(RuntimeException.class, () -> {
+        Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> {
             manipulatedstring.setString("art");
             int [] array;
             array=new int[]{1,0,20};
