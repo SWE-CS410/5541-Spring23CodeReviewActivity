@@ -21,26 +21,11 @@ public class StringManipulation implements StringManipulationInterface {
     @Override
     public int count()
     {
-        int count = 1;
-        String word = _string;
-        if(word.length() == 0)              // if no words are passed in
-        {
-            count = 0;
-        }
-        else
-        {
-            for (int i = 0; i < word.length() - 1; i++)
-            {
-                if (word.charAt(i) == ' ')      // use spaces to split the string into words
-                {
-                    if(i < word.length() - 2)   // logic to keep us from looping out of bounds
-                    {
-                        if(word.charAt(i + 1) != ' ')       // if there are extra spaces ignore them
-                        {
-                            count++;
-                        }
-                    }
-                }
+        String[] words = _string.split(" ");
+        int count = 0;
+        for (String sentance : words) {
+            if (!sentance.isEmpty()) {
+                count++;
             }
         }
         return count;
@@ -55,9 +40,13 @@ public class StringManipulation implements StringManipulationInterface {
         int indexDeleted = 0;
         String word = _string;
         StringBuilder newWord = new StringBuilder(word);                // using StringBuilder to manipulate string
-        if(n > word.length() || n <= 0 || word == null)                 // if invalid input, throw exception
+        if( n <= 0 || word == null)                 // if invalid input, throw exception
         {
             throw new IllegalArgumentException("Invalid Input");
+        }
+        if(n > word.length())
+        {
+            throw new IndexOutOfBoundsException("Index out of bounds");
         }
         for(int i = 0; i < word.length(); i++)                  // loop through entire string
         {
@@ -84,7 +73,7 @@ public class StringManipulation implements StringManipulationInterface {
     {
         int start = 0;
         String word = _string;
-        String[] words = word.split(" ");                     // split words using spaces
+        String[] words = word.split("\\s+");                     // split words using spaces
         String[] wordsWithParams = new String[2];                   // new array to return desired output
         if(startWord > endWord || startWord <= 0 || endWord <= 0)   // if input is not valid, throw exceptions
         {

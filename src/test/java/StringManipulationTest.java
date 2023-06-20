@@ -82,7 +82,7 @@ public class StringManipulationTest {
     @Test
     public void testRemoveNthCharacter3() {
         manipulatedstring.setString("apple");
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
             manipulatedstring.removeNthCharacter(10, true);
         });
     }
@@ -117,7 +117,7 @@ public class StringManipulationTest {
 
     @Test
     public void testGeSubStrings1() {
-        manipulatedstring.setString("This is my string");
+        manipulatedstring.setString("This  is my string");
         String [] sStings = manipulatedstring.getSubStrings(3, 4);
         assertEquals(sStings[0], "my");
         assertEquals(sStings[1], "string");
