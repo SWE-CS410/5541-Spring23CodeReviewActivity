@@ -1,7 +1,5 @@
 
-import org.junit.*;
-
-//import org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StringManipulationTest {
 
