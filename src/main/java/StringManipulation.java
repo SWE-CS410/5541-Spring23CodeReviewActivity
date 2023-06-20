@@ -18,11 +18,12 @@ public class StringManipulation implements StringManipulationInterface {
     public int count() {
         //If string is null or blank, return 0.
         if(this.string == null || this.string.isBlank()) return 0;
+
         /*
         Otherwise, get the number of words in string, which are
         separated by one or more whitespace characters.
          */
-        return string.split("[\\s\\r\\t\\n]+").length;
+        return string.split("\\s+").length;
     }
 
     @Override
@@ -61,7 +62,7 @@ public class StringManipulation implements StringManipulationInterface {
         //check string.count() < endWord
         if(this.count() < endWord) throw new IndexOutOfBoundsException("endWord cannot be larger than the total word count");
 
-        return Arrays.copyOfRange(this.string.split("[\\s\\r\\t\\n]+"), startWord-1, endWord);
+        return Arrays.copyOfRange(this.string.split("\\s+"), startWord-1, endWord);
     }
 
     @Override
