@@ -5,7 +5,7 @@ public class StringManipulation implements StringManipulationInterface {
     public String getString() {
         // Simple check if the String is null or not
         if (myString == null){
-            return null;
+            throw new IllegalArgumentException("String cannot be empty.");
         }
         else {
             return myString;
@@ -50,7 +50,7 @@ public class StringManipulation implements StringManipulationInterface {
             char current = myString.charAt(i);
 
             //this is to find the 2,4,6 if n=2 or 3,6,9 if n=3,...
-            if (position % n != 0) {
+            if ( (i+1) % n != 0) {
                 result += current;
             }
 
@@ -59,7 +59,6 @@ public class StringManipulation implements StringManipulationInterface {
                 result += ' ';
             }
 
-            position++;
         }
 
         return result;
@@ -68,8 +67,12 @@ public class StringManipulation implements StringManipulationInterface {
     @Override
     public String[] getSubStrings(int startWord, int endWord){
         // check if the beginning word and end word less than 0 and conflict with each other
-        if (startWord <= 0 || endWord <= 0 || startWord > endWord) {
+        if (startWord <= 0 || endWord <= 0) {
             throw new IllegalArgumentException("Invalid beginning or end.");
+        }
+        //Check if either the StartWord is in front of the endWord
+        if(startWord > endWord){
+            throw new IllegalArgumentException("StartWord must not be after EndWord.");
         }
 
         String[] words = myString.split("\\s+");
@@ -98,7 +101,7 @@ public class StringManipulation implements StringManipulationInterface {
     public String restoreString(int[] indices){
         //throw an error if user put more indices values than the String length
         if (indices.length != myString.length()) {
-            throw new IllegalArgumentException("Length of 'indices' must be the same as the string length.");
+            throw new IllegalArgumentException("Number of indices must be the same as the string length.");
         }
 
         //doesn't matter indices length or String length, since it all equals now
