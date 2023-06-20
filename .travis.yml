@@ -1,5 +1,5 @@
 language: java
-jdk: openjdk17
+jdk: openjdk19
 jobs:
   include:
     - script: mvn clean verify package
