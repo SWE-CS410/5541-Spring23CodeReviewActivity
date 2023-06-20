@@ -74,7 +74,7 @@ public class StringManipulation implements StringManipulationInterface {
 
     @Override
     public String[] getSubStrings(int startWord, int endWord){
-        if(startWord > endWord || startWord <=0 || endWord <= 0) {
+        if(startWord <=0 || endWord <= 0 || startWord > endWord) {
             throw new IllegalArgumentException("Invalid startWord and/or endWord value.");
         }
         if(endWord > count()) {

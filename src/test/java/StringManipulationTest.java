@@ -221,13 +221,23 @@ public class StringManipulationTest {
         assertArrayEquals(expected, array);
     }
 
-    //Testing ParameterizedTest and show
+    //Testing ParameterizedTest and ValueSource to verify IllegalArgumentException
+    // is thrown with invalid startWord inputs
     @ParameterizedTest
     @ValueSource( ints = {-1, 0})
     public void testGeSubStrings7(int input) {
         manipulatedstring.setString("This is a test string.");
         assertThrows(IllegalArgumentException.class, ()->
         {manipulatedstring.getSubStrings(input, 2);});
+    }
+
+    // Verify getSubStrings() will throw and IndexOutOfBoundsException when
+    // endWord > count().
+    @Test
+    public void testGeSubStrings8() {
+        manipulatedstring.setString("This is a test string.");
+        assertThrows(IndexOutOfBoundsException.class, ()->
+        {manipulatedstring.getSubStrings(1,8);});
     }
 
     // Verify basic functionality of restoreString.
@@ -298,16 +308,25 @@ public class StringManipulationTest {
 
     }
 
+    // This test checks to makes sure restoreString() will throw and IndexOutOfBoundsException
+    // when the input array has a negative element.
+    @Test
+    public void testRestoreString6() {
+        manipulatedstring.setString("cat");
+        int [] array;
+        array=new int[]{1,0,-1};
+        assertThrows(IndexOutOfBoundsException.class, ()->
+        {manipulatedstring.restoreString(array);});
+    }
+
     //Testing ParameterizedTest and CSVSource
     @ParameterizedTest
     @CsvSource({"2,1,3,4,5,0, balest", "5,4,1,2,3,0, seablt"})
-    public void testRestoreString6(int a, int b, int c, int d, int e, int f, String s) {
+    public void testRestoreString7(int a, int b, int c, int d, int e, int f, String s) {
         int[] array = {a,b,c,d,e,f};
         manipulatedstring.setString("tables");
         String testString = manipulatedstring.restoreString(array);
         assertEquals(s,testString);
-
-
     }
 
 }
